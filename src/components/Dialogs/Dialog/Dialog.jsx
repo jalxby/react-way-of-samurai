@@ -7,6 +7,8 @@ const Dialog = (props) => {
     return (
         <div className={s.dialog}>
             <NavLink to={path}>{props.name}</NavLink>
+
         </div>)
+
 }
 export default Dialog;
