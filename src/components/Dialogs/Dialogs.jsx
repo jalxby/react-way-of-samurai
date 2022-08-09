@@ -8,12 +8,12 @@ const Dialogs = (props) => {
     let post = React.createRef();
 
     let newPost = () => {
-        props.newPost();
+        props.dispatch({type: 'NEW-POST'});
     };
 
     let onDialogChange = () => {
         let text = post.current.value;
-        props.updateDialogText(text);
+        props.dispatch({type: 'UPDATE-DIALOG', newText: text});
     }
 
     let dialogElements = props.state.dialogs
