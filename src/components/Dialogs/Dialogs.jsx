@@ -6,9 +6,14 @@ import Message from "./Message/Message";
 
 const Dialogs = (props) => {
     let post = React.createRef();
+
     let newPost = () => {
+        props.newPost();
+    };
+
+    let onDialogChange = () => {
         let text = post.current.value;
-        alert(text);
+        props.updateDialogText(text);
     }
 
     let dialogElements = props.state.dialogs
@@ -27,11 +32,13 @@ const Dialogs = (props) => {
                 {messagesElements}
             </div>
             <div className={s.txt_area}>
-                <textarea ref={post}></textarea>
+                <textarea onChange={onDialogChange} ref={post} value={props.state.newDialogText}/>
                 <button onClick={newPost}>Send</button>
+
             </div>
         </div>
     )
+
 };
 
 export default Dialogs;
