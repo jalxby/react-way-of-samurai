@@ -1,3 +1,5 @@
+const ADD_POST = 'ADD-POST';
+const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 let store = {
     _state: {
         profilePage: {
@@ -42,20 +44,6 @@ let store = {
         this._callSubscriber = observer;        // observer pattern
     },
 
-    // addPost() {
-    //
-    // },
-    // updateNewPostText(newText) {
-    //
-    // },
-
-    // newPost() {
-    //
-    // },
-    // updateDialog(newText) {
-    //
-    // },
-
     dispatch(action){
         if(action.type === 'ADD-POST'){
             let newPost = {
@@ -84,5 +72,20 @@ let store = {
 
     }
 }
+
+export const addPostActionCreator = () => {
+
+    return {
+        type: ADD_POST
+    }
+}
+export const updateNewPostTextActionCreator = (text) => {
+
+    return {
+        type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+}
+
 window.store = store;
 export default store;
