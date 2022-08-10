@@ -1,5 +1,9 @@
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
+// const NEW_DIALOG_TEXT = 'NEW-DIALOG-TEXT';
+const NEW_POST = 'NEW-POST';
+const UPDATE_DIALOG = 'UPDATE-DIALOG';
+
 let store = {
     _state: {
         profilePage: {
@@ -44,8 +48,8 @@ let store = {
         this._callSubscriber = observer;        // observer pattern
     },
 
-    dispatch(action){
-        if(action.type === 'ADD-POST'){
+    dispatch(action) {
+        if (action.type === ADD_POST) {
             let newPost = {
                 id: 5,
                 message: this._state.profilePage.newPostText,
@@ -54,10 +58,10 @@ let store = {
             this._state.profilePage.posts.push(newPost);
             this._state.profilePage.newPostText = '';
             this._callSubscriber(this._state);
-        }else if(action.type === 'UPDATE-NEW-POST-TEXT'){
+        } else if (action.type === UPDATE_NEW_POST_TEXT) {
             this._state.profilePage.newPostText = action.newText;
             this._callSubscriber(this._state);
-        }else if(action.type === 'NEW-POST'){
+        } else if (action.type === NEW_POST) {
             let newPost = {
                 id: 6,
                 message: this._state.dialogsPage.newDialogText
@@ -65,7 +69,7 @@ let store = {
             this._state.dialogsPage.messages.push(newPost);
             this._state.dialogsPage.newDialogText = '';
             this._callSubscriber(this._state);
-        }else if(action.type === 'UPDATE-DIALOG'){
+        } else if (action.type === UPDATE_DIALOG) {
             this._state.dialogsPage.newDialogText = action.newText;
             this._callSubscriber(this._state);
         }
@@ -77,6 +81,13 @@ export const addPostActionCreator = () => ({type: ADD_POST})
 export const updateNewPostTextActionCreator = (text) => {
     return {
         type: UPDATE_NEW_POST_TEXT,
+        newText: text
+    }
+}
+export const addNewPost = () => ({type: NEW_POST})
+export const updateDialog = (text) => {
+    return {
+        type: UPDATE_DIALOG,
         newText: text
     }
 }
