@@ -45,10 +45,11 @@ let store = {
         return this._state;
     },
     subscribe(observer) {
-        this._callSubscriber = observer;        // observer pattern
+        this._callSubscriber = observer;// observer pattern
     },
 
     dispatch(action) {
+
         if (action.type === ADD_POST) {
             let newPost = {
                 id: 5,

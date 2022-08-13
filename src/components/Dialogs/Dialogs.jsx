@@ -2,18 +2,20 @@ import React from 'react';
 import s from './Dialogs.module.css'
 import Dialog from "./Dialog/Dialog";
 import Message from "./Message/Message";
+import {addNewPost, updateDialog} from "../../redux/state";
 
 
 const Dialogs = (props) => {
-    let post = React.createRef();
+
 
     let newPost = () => {
-        props.dispatch({type: 'NEW-POST'});
+        props.dispatch(addNewPost());
+
     };
 
-    let onDialogChange = () => {
-        let text = post.current.value;
-        props.dispatch({type: 'UPDATE-DIALOG', newText: text});
+    let onDialogChange = (e) => {
+        let text = e.target.value;
+        props.dispatch(updateDialog(text));
     }
 
     let dialogElements = props.state.dialogs
@@ -32,8 +34,12 @@ const Dialogs = (props) => {
                 {messagesElements}
             </div>
             <div className={s.txt_area}>
-                <textarea onChange={onDialogChange} ref={post} value={props.state.newDialogText}/>
-                <button onClick={newPost}>Send</button>
+                <div>
+                    <textarea onChange={onDialogChange} value={props.state.newDialogText}/>
+                </div>
+                <div>
+                    <button onClick={newPost}>Send</button>
+                </div>
 
             </div>
         </div>
